@@ -46,6 +46,7 @@ To invoke an AWS CLI command: `/opt/aws`
 ### Git-Svn-SSH
 
 To invoke the Git, Svn & SSH binaries `<git | svn | ssh>`
+
 *Note:* The binaries in this layer are mounted directly to `/opt/bin` which is included in your PATH, hence the ommitance of `/opt`
 
 ## Versions
