@@ -1,26 +1,52 @@
-# Svn, Git & SSH binaries for AWS Lambda
+# AWS Lambda Layers
 
-An AWS Lambda [layer](https://aws.amazon.com/about-aws/whats-new/2018/11/aws-lambda-now-supports-custom-runtimes-and-layers/)
-that allows your functions to use `svn`, `git` & `ssh` binaries.
+A collection of [AWS Lambda layers](https://aws.amazon.com/about-aws/whats-new/2018/11/aws-lambda-now-supports-custom-runtimes-and-layers/)
+that allow your functions to use layered binaries during execution.
+
+<br/>
 
 ## Setup
 
-This layer once added to your Lambda function will allow you to use svn, git & ssh 
-commands in your function regardless of runtime.
+Once a layer is added to your lambda execution environment you will be able to use the binaries packaged in that layer directly in your function code.
 
-AWS Lambda mounts layers at `/opt/bin` and includes that in your `PATH` so they will
-be 'ready to use' in your function once invoked.
+To add a new layer:
+1. Open up AWS Lambda Console 
+2. Click Layers -> Create Layer
+3. Upload layer zip file from this repo
+4. Create
 
-Click on Layers -> Add a layer -> Provide a layer version ARN -> and enter the following ARN:
+AWS Lambda mounts layers in the `/opt` directory from where they can be invoked if needed. See specific instructions for each layer below:
 
-```
-arn:aws:lambda:us-east-1:666142237544:layer:svn-git-ssh:1
-```
+<br/>
 
-### Note
+### Hugo
 
-This ARN is only published in region `us-east-1`. If your function is deployed in a different region,
-download the `svn-git-ssh.zip` file in the repository and publish the zip file layer in your desired region.
+To invoke the Hugo static site builder: `/opt/hugo`
+
+#### Versions
+
+| Hugo version | 
+| --- | 
+| 0.48 | 
+
+<br/>
+
+### AWS CLI
+
+To invoke an AWS CLI command: `/opt/aws`
+
+#### Versions
+
+| AWS CLI version | Botocore version | 
+| --- | --- | 
+| 1.16.117 | 1.12.107 | 
+
+<br/>
+
+### Git-Svn-SSH
+
+To invoke the Git, Svn & SSH binaries `<git | svn | ssh>`
+*Note:* The binaries in this layer are mounted directly to `/opt/bin` which is included in your PATH, hence the ommitance of `/opt`
 
 ## Versions
 
